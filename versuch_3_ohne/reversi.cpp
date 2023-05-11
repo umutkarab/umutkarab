@@ -190,9 +190,9 @@ bool zugGueltig(const int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSp
         for (int i = -1; i <= 1; i++)
         {
             // Hier erfolgt jetzt Ihre Implementierung ...
-        	if(spielfeld[posY+j][posX+i] == gegner && aufSpielfeld(posX, posY))
+        	if(spielfeld[posY+j][posX+i] == gegner && aufSpielfeld(posX, posY)) // checks if there is opponent and if we are still in the field
         	{
-        		for(int k=2; k < 8; k++)  // the counter k is used to walk along the line where the opponent was adjacent
+        		for(int k=2; k < 8; k++)  // K=1 == gegner, so we are starting from k=2 and we are doing loop till 7, because at 8 we are getting out
         		{
         			if(spielfeld[posY + (j*k)][posX + (i*k)] == 0) // if empty leave for-loop
         			{
@@ -223,7 +223,8 @@ bool zugGueltig(const int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSp
 
 /**
  * @brief Funktion, die einen Zug ausfuehrt
- *
+ * sehr aehnliche Funktion wie zugGueltig, jedoch darum erweitert,
+ * dass die Steine auch jeweils ausgetauscht werden und in alle Richtungen geprueft wird
  * @param spielfeld Das aktuelle Spielfeld
  * @param aktuellerSpieler Der aktuelle Spieler
  * @param posX Die aktuelle Spalte
@@ -244,7 +245,7 @@ void zugAusfuehren(int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSpiel
             // Hier erfolgt jetzt Ihre Implementierung ...
         	if(spielfeld[posY+j][posX+i] == gegner && aufSpielfeld(posX, posY))
         	{
-        		for(int k=2; k < 8; k++) // the counter k is used to walk along the line where the opponent was adjacent
+        		for(int k=2; k < 8; k++) // K=1 == gegner, so we are starting from k=2 and we are doing loop till 7, because at 8 we are getting out
         		{
         			if(spielfeld[posY + (j*k)][posX + (i*k)] == 0)  // if empty leave for-loop
         			{
@@ -256,7 +257,7 @@ void zugAusfuehren(int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSpiel
         			}
         			else if(spielfeld[posY + (j*k)][posX + (i*k)] == aktuellerSpieler)
         			{
-        				while(k > 0) // bis zu stelle wohin unser stein platziert wird
+        				while(k > 0) // it means it will get discriment till k=1, and in k=1 we have our oppoent"s stone which we will turn it to our"s
         				{
         					k--;
         					spielfeld[posY+ (j*k)][posX+ (i*k)] = aktuellerSpieler; // umwandeln
@@ -271,6 +272,14 @@ void zugAusfuehren(int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSpiel
     }
     spielfeld[posY][posX] = aktuellerSpieler; // neu stein position
 }
+
+/**
+ * @brief Funktion, counts the possible moves
+ *
+ * @param spielfeld Das aktuelle Spielfeld
+ * @param posX Die aktuelle Spalte
+ * @param posY Die aktuelle Zeile
+ */
 
 int moeglicheZuege(const int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSpieler)
 {
@@ -290,7 +299,13 @@ int moeglicheZuege(const int spielfeld[GROESSE_Y][GROESSE_X], const int aktuelle
     return moeglicheZuegeZahl;
 }
 
-
+/**
+ * @brief Funktion, die menschliche Züge ermöglicht
+ *
+ * @param spielfeld Der aktuelle Spieler
+ * @param aktuellerSpieler Der aktuelle Spieler
+ * @return
+ */
 bool menschlicherZug(int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSpieler)
 {
     if (moeglicheZuege(spielfeld, aktuellerSpieler) == 0)
@@ -335,7 +350,17 @@ bool menschlicherZug(int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSpi
     return true;
 }
 
-
+/**
+ * @brief Funktion, die das Spielen des gesamten Spiels ermoeglicht
+ *
+ * Solange es noch moegliche Zuege gibt, wird das die Schleife durchlaufen
+ * Zunaechst wird geschaut, ob es sich um einen mensclichen Spieler oder
+ * Computer handelt und der passende Zug wird auchgeführt.
+ * Nach dem Zug wird dann das Spielfeld gezeigt und der Spieler gewechselt.
+ * Zuletzt wird geschaut, wer ist der Gewinner
+ *
+ *@param spielerTyp gibt an, ob der Spieler Mensch oder Computer ist
+ */
 void spielen(const int spielerTyp[2])
 {
     int spielfeld[GROESSE_Y][GROESSE_X];
