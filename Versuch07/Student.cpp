@@ -68,15 +68,31 @@ std::string Student::getAdresse() const
  */
 void Student::ausgabe(std::ostream& out)
 {
-    std::cout << name << ", MatNr. " << matNr << ", geb. am "
+    /*std::cout << name << ", MatNr. " << matNr << ", geb. am "
               << geburtstag << ", wohnhaft in " << adresse
-              << std::endl;
+              << std::endl; */
+	out << name << ", MatNr: " << matNr << ", geb. am" << geburtstag << ", wohnhaft in " << adresse << std::endl;
 }
 
 bool Student::operator == (const Student& student2)
 {
 	 return this->getMatNr() == student2.getMatNr();
 }
+
+/** You can also do something like, which is totally unnecessary, the one in the up is better for encapsulation
+ *
+ * bool Student::operator == (const Student& student)
+{
+	 if ( matNR == student.matNr)
+	 {
+	   return true;
+	 }
+	 else                 This can be also written without return true, false statements cuz its already a bool
+	 {
+	   return false;
+	 }
+}
+ */
 
 
 std::ostream& operator << (std::ostream& out, Student& student1)

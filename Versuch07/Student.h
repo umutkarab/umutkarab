@@ -20,6 +20,7 @@ public:
     bool operator == (const Student& student2);
     bool operator < (const Student& student2);
     bool operator > (const Student& student2);
+
 private:
     unsigned int matNr;
     std::string name;
@@ -27,5 +28,6 @@ private:
     std::string adresse;
 };
 
-std::ostream& operator <<(std::ostream& out, Student& student1);
-#endif
+std::ostream& operator <<(std::ostream& out, Student& student1); /// osteream& where the output will go
+#endif                                                           /// Student& the object that will be outputted
+                                                                 /// this has 2 parameters so its a non-member function, it can be added to public by using "friend"
