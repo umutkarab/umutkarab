@@ -44,7 +44,7 @@ int main()
 				  << "(7): Datenelement vorne loeschen" << std::endl
 				  << "(8): Daten aus einer Datei einlesen" << std::endl
 				  << "(9): Daten in einer Datei sichern" << std::endl
-				  << "(a): Daten sortieren" << std::endl
+				  << "(s): Daten sortieren" << std::endl
                   << "(0): Beenden" << std::endl;
         std::cin >> abfrage;
         std::cin.ignore(10, '\n');
@@ -262,7 +262,7 @@ int main()
               break;
 
               ///Daten sortieren - ADDED!
-            case 'a':
+            case 's':
               {
             	  std::sort(studentenListe.begin(), studentenListe.end());
 
