@@ -16,8 +16,12 @@ using namespace std;
 
 int main()
 {
-    Student student;
-    vector <Student> studentenListe;
+    Student student; /// defining a varibale named "student" of type "Student"
+    vector <Student> studentenListe; /// declaring a variable named "studentenListe" of the type std::vector<Student>
+                                     /// it means studentenListe is now ready to hold "Student" objects^
+                                     /// we can write someting like vector<int> but here we use Student and as we know
+                                     /// int,float,double... are some datatypes which is made by c++
+                                     /// and classes are actually also datatypes but these are done by the user
     vector <Student>::const_iterator it;
     vector <Student>::const_reverse_iterator revIt;
 
@@ -68,16 +72,16 @@ int main()
 
                     Student studentN(matNr, name, geburtstag, adresse);
 
-                    studentenListe.push_back(studentN);
+                    studentenListe.push_back(studentN); /// only change is we used already defined algorithm
                 }
                 break;
 
-            /// Datenelement hinten entfernen
+            /// Datenelement hinten entfernen - ADDED!
             case '2':
                 {
                     if(!studentenListe.empty())
                     {
-                        studentenListe.pop_back();
+                        studentenListe.pop_back(); /// already defined algorithm
                     }
                     else
                     {
@@ -94,7 +98,7 @@ int main()
                         std::cout << "Inhalt der Liste in fortlaufender Reihenfolge:" << std::endl;
                         for(it = studentenListe.begin(); it != studentenListe.end(); it++)
                         {
-                        	it->ausgabe();
+                        	it->ausgabe();                   /// instead of writing a function, we just used iterator to write the list
                         }
                      }
                      else
@@ -131,8 +135,8 @@ int main()
                 		std::cout << "Geben Sie die nummer, die Sie loeschen moechten:" << std::endl;
                 		std::cin >> eraseNummer;
                 		eraseNummer = eraseNummer - 1;
-                		studentenListe.erase(studentenListe.begin() + eraseNummer);
-                	}
+                		studentenListe.erase(studentenListe.begin() + eraseNummer); /// instead of writing a function to find and delete the matNR, we just use
+                	}                                                               /// erase here because vector is also kind of array and its easy to do
                 	else
                 	{
                 		std::cout << "Die Liste ist leer!\n\n";
@@ -140,7 +144,7 @@ int main()
                 }
                 break;
 
-            ///Datenelement hinzufuegen
+            ///Datenelement hinzufuegen - ADDED !
             case '6':
               {
             	  int insertNummer = 0;
@@ -171,8 +175,8 @@ int main()
 
                       Student studentN(matNr, name, geburtstag, adresse);
 
-            		  studentenListe.insert(studentenListe.begin() + insertNummer, studentN);
-            	  }
+            		  studentenListe.insert(studentenListe.begin() + insertNummer, studentN); /// That way we can add a element wherever we want
+            	  }                                                                           /// which we couldnt do in versuch 5
             	  else
             	  {
             		  std::cout << "Die Liste ist Leer!\n\n";
@@ -185,7 +189,7 @@ int main()
 			  {
             	  if(!studentenListe.empty())
             	  {
-            		  studentenListe.erase(studentenListe.begin());
+            		  studentenListe.erase(studentenListe.begin()); /// instead of using a fuction that we wrote ( popFront() ) we can just use erase
             	  }
             	  else
             	  {
@@ -194,7 +198,7 @@ int main()
 			  }
               break;
 
-            ///Daten aus einer Datei einlesen
+            ///Daten aus einer Datei einlesen - ADDED!
             case '8':
               {
             	  unsigned int matNr = 0;
@@ -206,7 +210,7 @@ int main()
                   std::cout << "Geben Sie den Namen der Datei ein: ";
                   std::cin >> dateiName;
                   cin.ignore(10, '\n');
-                  std::ifstream eingabe(dateiName);
+                  std::ifstream eingabe(dateiName); /// ifstream = einlesen
                   eingabe >> matNr;
                   eingabe.ignore(10, '\n');
 
@@ -223,7 +227,7 @@ int main()
               }
               break;
 
-            ///Daten in einer Datei speichern
+            ///Daten in einer Datei speichern - ADDED!
             case '9':
               {
             	  string dateiName = "";
@@ -231,8 +235,7 @@ int main()
             	  std::cin >> dateiName;
             	  cin.ignore(10, '\n');
 
-            	  std::ofstream ausgabe(dateiName);
-
+            	  std::ofstream ausgabe(dateiName); /// ofstream to write inside
 
             	  for(it = studentenListe.begin(); it != studentenListe.end(); it++)
             	  {
