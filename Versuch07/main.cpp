@@ -270,11 +270,6 @@ int main()
             	  {
             		  std::cout << *it << std::endl; /// This line prints the current element pointed by the iterator it
             	  }
-
-            	  for(auto revIt = studentenListe.rbegin(); revIt != studentenListe.rend(); revIt++)
-            	  {
-            		  std::cout << *revIt << std::endl;
-            	  }
               }
               break;
 
