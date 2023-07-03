@@ -74,9 +74,9 @@ void Student::ausgabe(std::ostream& out)
 	out << name << ", MatNr: " << matNr << ", geb. am" << geburtstag << ", wohnhaft in " << adresse << std::endl;
 }
 
-bool Student::operator == (const Student& student2)
+bool Student::operator == (const Student& student)
 {
-	 return this->getMatNr() == student2.getMatNr();
+	 return this->getMatNr() == student.getMatNr();
 }
 
 /** You can also do something like, which is totally unnecessary, the one in the up is better for encapsulation
@@ -95,18 +95,18 @@ bool Student::operator == (const Student& student2)
  */
 
 
-std::ostream& operator << (std::ostream& out, Student& student1)
+std::ostream& operator << (std::ostream& out, Student& student)
 {
-	student1.ausgabe(out);
+	student.ausgabe(out);
 	return out;
 }
 
-bool Student::operator < (const Student& student2)
+bool Student::operator < (const Student& student)
 {
-	return this->getMatNr() < student2.getMatNr();
+	return this->getMatNr() < student.getMatNr();
 }
 
-bool Student::operator > (const Student& student2)
+bool Student::operator > (const Student& student)
 {
-	return this->getMatNr() > student2.getMatNr();
+	return this->getMatNr() > student.getMatNr();
 }

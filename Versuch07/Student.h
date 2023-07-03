@@ -17,9 +17,9 @@ public:
     std::string getGeburtstag() const;
     std::string getAdresse() const;
     void ausgabe(std::ostream& out);
-    bool operator == (const Student& student2);
-    bool operator < (const Student& student2);
-    bool operator > (const Student& student2);
+    bool operator == (const Student& student);
+    bool operator < (const Student& student);
+    bool operator > (const Student& student);
 
 private:
     unsigned int matNr;
@@ -28,6 +28,6 @@ private:
     std::string adresse;
 };
 
-std::ostream& operator <<(std::ostream& out, Student& student1); /// osteream& where the output will go
+std::ostream& operator <<(std::ostream& out, Student& student); /// osteream& where the output will go
 #endif                                                           /// Student& the object that will be outputted
                                                                  /// this has 2 parameters so its a non-member function, it can be added to public by using "friend"
